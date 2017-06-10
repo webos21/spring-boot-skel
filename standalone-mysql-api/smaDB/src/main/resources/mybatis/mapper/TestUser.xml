@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gmail.webos21.spring.db.mapper.TestUserDao">
+	<select id="findById" parameterType="java.lang.String" resultType="com.gmail.webos21.spring.db.domain.TestUser">
+		SELECT *
+		FROM test_user
+		WHERE id = #{id}
+	</select>
+	<select id="findAllByMap" parameterType="java.util.HashMap" resultType="com.gmail.webos21.spring.db.domain.TestUser">
+		SELECT *
+		FROM test_user
+		<where>
+			<if test="searchId neq null and searchId neq ''">id = #{searchId}</if>
+		</where>
+		<if test="sortingIndex neq null and sortingType neq null">
+			ORDER BY
+			<choose>
+				<when test="sortingIndex eq 0"> id </when>
+			</choose>
+			<choose>
+				<when test="sortingType eq 0"> ASC NULLS FIRST</when>
+				<when test="sortingType eq 1"> DESC NULLS LAST</when>
+			</choose>
+		</if>
+		<if test="pageListSize neq null and pageNum neq null">
+			<if test="_databaseId eq 'mysql'">
+				LIMIT (#{pageNum}-1) * #{pageListSize}, #{pageListSize}
+			</if>
+			<if test="_databaseId eq 'pgsql'">
+				LIMIT #{pageListSize} OFFSET (#{pageNum}-1) * #{pageListSize}
+			</if>
+		</if>
+	</select>
+	<select id="selectCount" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+		SELECT count(*)
+		FROM test_user
+		<where>
+			<if test="searchId neq null and searchId neq ''">id = #{searchId}</if>
+		</where>
+	</select>
+
+	<insert id="register" parameterType="com.gmail.webos21.spring.db.domain.TestUser" useGeneratedKeys="false" keyProperty="id">
+		INSERT INTO test_user (id, name)
+		VALUES (#{id}, #{name})
+		<!-- 
+		<selectKey keyProperty="id" resultType="java.lang.Long" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		 -->
+	</insert>
+
+	<update id="update" parameterType="com.gmail.webos21.spring.db.domain.TestUser">
+		UPDATE test_user
+		<set>
+			<if test="name neq null"> name = #{name}, </if>
+		</set>
+		WHERE id = #{id}
+	</update>
+	<update id="updateByMap" parameterType="java.util.HashMap">
+		UPDATE test_user
+		<set>
+			<if test="name neq null"> ts_gether = #{name}, </if>
+		</set>
+		WHERE id = #{id}
+	</update>
+
+	<delete id="deleteById" parameterType="java.lang.String">
+		DELETE FROM test_user
+		WHERE id=#{id}
+	</delete>
+
+</mapper>
