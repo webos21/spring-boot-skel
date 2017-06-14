@@ -1,0 +1,5 @@
+CREATE TABLE id_val
+(
+	id NUMBER(19) NOT NULL,
+	val VARCHAR2(50) NOT NULL,
+);
