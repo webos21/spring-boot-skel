@@ -3,58 +3,30 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>smajDB</artifactId>
+	<artifactId>smwCommon</artifactId>
 	<packaging>jar</packaging>
 
-	<name>smajDB</name>
-	<description>DB Package for SpringBootSkel</description>
+	<name>smwCommon</name>
+	<description>Common Package for SpringBootSkel</description>
 
-	<!-- Parent Project : smajParent -->
+	<!-- Parent Project : smwParent -->
 	<parent>
 		<groupId>com.gmail.webos21.spring</groupId>
-		<artifactId>smajParent</artifactId>
+		<artifactId>smwParent</artifactId>
 		<version>1.0.0</version>
-		<relativePath>../smajParent/pom.xml</relativePath>
+		<relativePath>../smwParent/pom.xml</relativePath>
 	</parent>
 
 	<dependencies>
 
-		<!-- Project Reference : smajCommon -->
-		<dependency>
-			<groupId>com.gmail.webos21.spring</groupId>
-			<artifactId>smajCommon</artifactId>
-			<version>${project.version}</version>
-			<type>jar</type>
-		</dependency>
-
-		<!-- Spring-Boot -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-jdbc</artifactId>
-			<exclusions>
-				<exclusion>
-					<groupId>org.apache.tomcat</groupId>
-					<artifactId>tomcat-jdbc</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-
-		<!-- Spring-Framework -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
-		</dependency>
+		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-orm</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-oxm</artifactId>
+			<artifactId>spring-webmvc</artifactId>
 		</dependency>
 
 		<!-- AspectJ -->
@@ -90,9 +62,11 @@
 			<groupId>commons-beanutils</groupId>
 			<artifactId>commons-beanutils</artifactId>
 		</dependency>
+
+		<!-- LogBack -->
 		<dependency>
-			<groupId>commons-dbcp</groupId>
-			<artifactId>commons-dbcp</artifactId>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
 		</dependency>
 
 		<!-- myBatis -->
@@ -105,35 +79,29 @@
 			<artifactId>mybatis</artifactId>
 		</dependency>
 
-		<!-- Hibernate for DB Object Validation. -->
+		<!-- Servlet -->
 		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-validator</artifactId>
-			<scope>${flag.scope.switch}</scope>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
 		</dependency>
 
-		<!-- MariaDB -->
-		<dependency>
-			<groupId>org.mariadb.jdbc</groupId>
-			<artifactId>mariadb-java-client</artifactId>
-		</dependency>
 
-		<!-- Code Generation Library : DB Injection -->
-		<dependency>
-			<groupId>cglib</groupId>
-			<artifactId>cglib-nodep</artifactId>
-		</dependency>
-
-		<!-- Test -->
+		<!-- Test Dependency : spring-test, junit -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
 			<scope>test</scope>
 		</dependency>
 
 	</dependencies>
 
 	<build>
+		<!-- <finalName>${project.artifactId}</finalName> -->
 		<plugins>
 			<!-- Maven-JAR -->
 			<plugin>

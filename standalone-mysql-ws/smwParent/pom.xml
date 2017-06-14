@@ -4,14 +4,14 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.gmail.webos21.spring</groupId>
-	<artifactId>smajParent</artifactId>
+	<artifactId>smwParent</artifactId>
 	<version>1.0.0</version>
 	<packaging>pom</packaging>
 
-	<name>smajParent</name>
+	<name>smwParent</name>
 	<description>Parent of SpringBootSkel</description>
 
-	<url>http://github.com/webos21/spring-boot-skel/standalone-mysql-api</url>
+	<url>http://github.com/webos21/spring-boot-skel/standalone-mysql-ws</url>
 
 	<!-- Parent Project : use Spring-Boot -->
 	<parent>
@@ -21,9 +21,9 @@
 	</parent>
 
 	<modules>
-		<module>../smajCommon</module>
-		<module>../smajDB</module>
-		<module>../smajService</module>
+		<module>../smwCommon</module>
+		<module>../smwDB</module>
+		<module>../smwService</module>
 	</modules>
 
 	<properties>
