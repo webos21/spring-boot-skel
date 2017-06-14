@@ -37,7 +37,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gmail.webos21.spring.db.DatabaseConfigImpl;
 import com.gmail.webos21.spring.db.domain.TestUser;
-import com.gmail.webos21.spring.rest.RestApplication;
+import com.gmail.webos21.spring.svc.RestApplication;
 
 @Transactional
 @Rollback

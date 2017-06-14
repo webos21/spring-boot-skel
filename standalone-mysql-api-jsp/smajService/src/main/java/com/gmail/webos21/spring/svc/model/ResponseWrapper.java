@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.gmail.webos21.spring.rest.model;
+package com.gmail.webos21.spring.svc.model;
 
 import java.util.List;
 

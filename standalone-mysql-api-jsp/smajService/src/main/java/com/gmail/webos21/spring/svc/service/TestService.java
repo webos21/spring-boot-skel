@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.gmail.webos21.spring.rest.service;
+package com.gmail.webos21.spring.svc.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,9 +24,9 @@ import org.springframework.stereotype.Service;
 
 import com.gmail.webos21.spring.db.domain.TestUser;
 import com.gmail.webos21.spring.db.mapper.TestUserDao;
-import com.gmail.webos21.spring.rest.RestConsts;
-import com.gmail.webos21.spring.rest.model.ResponseWrapper;
-import com.gmail.webos21.spring.rest.model.TestUserData;
+import com.gmail.webos21.spring.svc.RestConsts;
+import com.gmail.webos21.spring.svc.model.ResponseWrapper;
+import com.gmail.webos21.spring.svc.model.TestUserData;
 
 @Service
 public class TestService {

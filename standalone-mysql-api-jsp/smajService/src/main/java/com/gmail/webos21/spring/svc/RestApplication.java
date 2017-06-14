@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.gmail.webos21.spring.rest;
+package com.gmail.webos21.spring.svc;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.SpringBootConfiguration;

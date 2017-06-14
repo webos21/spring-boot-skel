@@ -14,14 +14,38 @@
  * limitations under the License.
  */
 
-package com.gmail.webos21.spring.rest.model;
+package com.gmail.webos21.spring.svc.model;
 
-import javax.xml.bind.annotation.XmlSeeAlso;
+import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- * AbstractData를 상속받은 클래스들을 <code>@XmlSeeAlso({ConfigData.class, ...})</code>에 모두 적어주어야 한다.
- */
-@XmlSeeAlso({ TestUserData.class })
-public abstract class AbstractData {
+import com.gmail.webos21.spring.db.domain.TestUser;
+
+@XmlRootElement(name = "data")
+public class TestUserData extends AbstractData {
+
+	private String id;
+
+	private String name;
+
+	public TestUserData(TestUser tu) {
+		this.id = tu.getId();
+		this.name = tu.getName();
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 }

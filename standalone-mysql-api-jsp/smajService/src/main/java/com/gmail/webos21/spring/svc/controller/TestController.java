@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.gmail.webos21.spring.rest.controller;
+package com.gmail.webos21.spring.svc.controller;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -26,9 +26,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.gmail.webos21.spring.common.log.GeneralLogInfo;
 import com.gmail.webos21.spring.common.log.GeneralLogThreadLocal;
-import com.gmail.webos21.spring.rest.RestConsts;
-import com.gmail.webos21.spring.rest.model.ResponseWrapper;
-import com.gmail.webos21.spring.rest.service.TestService;
+import com.gmail.webos21.spring.svc.RestConsts;
+import com.gmail.webos21.spring.svc.model.ResponseWrapper;
+import com.gmail.webos21.spring.svc.service.TestService;
 
 @Controller
 @RequestMapping("/skel/test")

@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<artifactId>smajService</artifactId>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>smajService</name>
 	<description>Service Package for SpringBootSkel</description>
