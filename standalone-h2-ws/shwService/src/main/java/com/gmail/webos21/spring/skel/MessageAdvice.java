@@ -1,6 +1,5 @@
 package com.gmail.webos21.spring.skel;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
@@ -8,8 +7,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 public class MessageAdvice {
 
 	@ModelAttribute("message")
-	public String message(@Value("${application.message:Hello World}") String message) {
-		return message;
+	public String message() {
+		return "Hello World";
 	}
 
 }

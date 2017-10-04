@@ -27,6 +27,11 @@ public class IdValData extends AbstractData {
 
 	private String value;
 
+	public IdValData() {
+		this.id = null;
+		this.value = null;
+	}
+
 	public IdValData(IdVal tu) {
 		this.id = tu.getId();
 		this.value = tu.getValue();

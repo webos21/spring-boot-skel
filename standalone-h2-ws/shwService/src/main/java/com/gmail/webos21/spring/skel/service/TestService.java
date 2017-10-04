@@ -24,7 +24,7 @@ import org.springframework.stereotype.Service;
 
 import com.gmail.webos21.spring.skel.SvcConsts;
 import com.gmail.webos21.spring.skel.db.domain.IdVal;
-import com.gmail.webos21.spring.skel.db.mapper.IdValRepository;
+import com.gmail.webos21.spring.skel.db.repositories.IdValRepository;
 import com.gmail.webos21.spring.skel.model.IdValData;
 import com.gmail.webos21.spring.skel.model.ResponseWrapper;
 
@@ -34,7 +34,7 @@ public class TestService {
 	@Autowired
 	private IdValRepository testRepo;
 
-	public ResponseWrapper getUserList() throws Exception {
+	public ResponseWrapper getItemList() throws Exception {
 		List<IdVal> tuList = testRepo.findAll();
 		ArrayList<IdValData> tudList = new ArrayList<IdValData>();
 
@@ -45,4 +45,23 @@ public class TestService {
 
 		return new ResponseWrapper(SvcConsts.SC_OK, SvcConsts.SM_OK, tudList);
 	}
+
+	public ResponseWrapper addItem(IdValData item) throws Exception {
+
+		IdVal newRow = new IdVal();
+		newRow.setValue(item.getValue());
+
+		testRepo.save(newRow);
+
+		List<IdVal> tuList = testRepo.findAll();
+		ArrayList<IdValData> tudList = new ArrayList<IdValData>();
+
+		for (IdVal tu : tuList) {
+			IdValData tud = new IdValData(tu);
+			tudList.add(tud);
+		}
+
+		return new ResponseWrapper(SvcConsts.SC_OK, SvcConsts.SM_OK, tudList);
+	}
+
 }

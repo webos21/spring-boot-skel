@@ -12,17 +12,17 @@ public class IdVal {
 
 	@Id
 	@GeneratedValue
-	@Column(name = "id", nullable = false)
-	private long id;
+	@Column(name = "id", nullable = true)
+	private Long id;
 
 	@Column(name = "val", nullable = false)
 	private String value;
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

@@ -18,63 +18,58 @@ package com.gmail.webos21.spring.skel.db.test;
 
 import static org.junit.Assert.assertEquals;
 
-import java.lang.management.ManagementFactory;
 import java.util.List;
 
-import javax.management.ObjectName;
+import javax.transaction.Transactional;
 
-import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.gmail.webos21.spring.skel.db.domain.IdVal;
-import com.gmail.webos21.spring.skel.db.mapper.IdValRepository;
+import com.gmail.webos21.spring.skel.db.repositories.IdValRepository;
 
-@Transactional
-@Rollback
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { TestApplication.class })
+@Transactional
+@Rollback
 public class IdValTest {
 
 	@Autowired
-	private IdValRepository testRepo;
+	private IdValRepository idValRepository;
 
 	@Test
 	public void testAllMethod() throws Exception {
 
 		// #01 : Check the current rows
-		Long tId = Long.MAX_VALUE - 1;
-		long preAllSize = testRepo.count();
-		System.out.println("Table('TestUser') Rows = " + preAllSize);
+		long preAllSize = idValRepository.count();
+		System.out.println("Table('id_val') Rows = " + preAllSize);
 
 		// #02 : Create new row
 		IdVal newRow = new IdVal();
 
-		newRow.setId(tId);
 		newRow.setValue("Tester");
 
-		testRepo.save(newRow);
+		idValRepository.save(newRow);
 
 		// #03 : Find newly inserted row and Check
-		IdVal foundRow = testRepo.findOne(tId.toString());
+		IdVal foundRow = idValRepository.findOne(newRow.getId());
 
 		System.out.println("id           = " + foundRow.getId());
 		System.out.println("val          = " + foundRow.getValue());
 
-		assertEquals(tId.longValue(), foundRow.getId());
+		assertEquals(newRow.getId(), foundRow.getId());
 		assertEquals("Tester", foundRow.getValue());
 
 		// #04 : Find all data again and Check
-		List<IdVal> postAll = testRepo.findAll();
+		List<IdVal> postAll = idValRepository.findAll();
 		assertEquals((preAllSize + 1), postAll.size());
 
 		for (IdVal aRow : postAll) {
-			if (tId == aRow.getId()) {
+			if (newRow.getId() == aRow.getId()) {
 				foundRow = aRow;
 			}
 		}

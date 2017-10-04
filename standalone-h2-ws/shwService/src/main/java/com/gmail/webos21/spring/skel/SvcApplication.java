@@ -19,15 +19,17 @@ package com.gmail.webos21.spring.skel;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+
+import com.gmail.webos21.spring.skel.db.DbApp;
 
 @SpringBootConfiguration
-@EnableAutoConfiguration(exclude = { DataSourceTransactionManagerAutoConfiguration.class, DataSourceAutoConfiguration.class })
+@EnableAutoConfiguration
 @ComponentScan
+@EnableJpaRepositories(basePackageClasses = { DbApp.class })
 public class SvcApplication extends SpringBootServletInitializer {
 
 	@Override

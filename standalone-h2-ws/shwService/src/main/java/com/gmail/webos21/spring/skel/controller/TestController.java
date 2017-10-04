@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.gmail.webos21.spring.common.log.GeneralLogInfo;
 import com.gmail.webos21.spring.common.log.GeneralLogThreadLocal;
 import com.gmail.webos21.spring.skel.SvcConsts;
+import com.gmail.webos21.spring.skel.model.IdValData;
 import com.gmail.webos21.spring.skel.model.ResponseWrapper;
 import com.gmail.webos21.spring.skel.service.TestService;
 
@@ -39,12 +41,12 @@ public class TestController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
-	public ResponseWrapper processGet(HttpServletResponse res) throws Exception {
+	public ResponseWrapper getList(HttpServletResponse res) throws Exception {
 		GeneralLogInfo generalLogInfo = GeneralLogThreadLocal.currentGeneralLogInfo();
 
 		ResponseWrapper aRes = null;
 		try {
-			aRes = testSvc.getUserList();
+			aRes = testSvc.getItemList();
 		} catch (Exception e) {
 			e.printStackTrace();
 			ResponseWrapper rw = new ResponseWrapper(SvcConsts.SC_INTERNAL_SERVER_ERROR, e.getMessage());
@@ -56,4 +58,28 @@ public class TestController {
 		generalLogInfo.setResponse(aRes);
 		return aRes;
 	}
+
+	@RequestMapping(method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseWrapper addItem(@RequestBody IdValData item, HttpServletResponse res) throws Exception {
+		GeneralLogInfo generalLogInfo = GeneralLogThreadLocal.currentGeneralLogInfo();
+
+		System.out.println("ID = " + item.getId());
+		System.out.println("VALUE = " + item.getValue());
+
+		ResponseWrapper aRes = null;
+		try {
+			aRes = testSvc.addItem(item);
+		} catch (Exception e) {
+			e.printStackTrace();
+			ResponseWrapper rw = new ResponseWrapper(SvcConsts.SC_INTERNAL_SERVER_ERROR, e.getMessage());
+			generalLogInfo.setResponse(rw);
+			res.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			return rw;
+		}
+
+		generalLogInfo.setResponse(aRes);
+		return aRes;
+	}
+
 }
